@@ -14,6 +14,12 @@
         android:theme="@style/Theme.AplikasiTempahanGelanggangSukan"
         tools:targetApi="31">
         <activity
+            android:name=".courtregister"
+            android:exported="false" />
+        <activity
+            android:name=".registration"
+            android:exported="false" />
+        <activity
             android:name=".login"
             android:exported="false" />
         <activity
