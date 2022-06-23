@@ -3,6 +3,7 @@ package com.example.aplikasitempahangelanggangsukan;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -118,6 +119,8 @@ public class courtregister extends AppCompatActivity implements View.OnClickList
                                                                .child(courtName).setValue(courtsD);
 
                                                 Toast.makeText(courtregister.this, "Registration Successful!", Toast.LENGTH_LONG).show();
+                                                Intent intent = new Intent(courtregister.this, login.class);
+                                                startActivity(intent);
                                             }else{
                                                 Toast.makeText(courtregister.this, "Registration Failed! Try Again!", Toast.LENGTH_LONG).show();
                                             }

@@ -122,7 +122,7 @@ public class registration extends AppCompatActivity implements View.OnClickListe
                             User user = new User(fullname,email,occupation,usertype);
 
                             FirebaseDatabase.getInstance("https://tempahan-gelanggang-sukan-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users")
-                                    .child(fullname)
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
