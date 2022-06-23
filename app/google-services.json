@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "495436434758",
+    "firebase_url": "https://tempahan-gelanggang-sukan-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "tempahan-gelanggang-sukan",
+    "storage_bucket": "tempahan-gelanggang-sukan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495436434758:android:e3b794df576e119ae56947",
+        "android_client_info": {
+          "package_name": "com.example.aplikasitempahangelanggangsukan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495436434758-k85d2n6kugfls4tekodetueolfr24rpi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvBGGZ_i-Cz40t0Vv8HdauZKRC_XiNSl0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495436434758-k85d2n6kugfls4tekodetueolfr24rpi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
