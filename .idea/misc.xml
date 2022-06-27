@@ -3,20 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.1" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/drawable/ic_booking.xml" value="0.1" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/drawable/ic_menu.xml" value="0.3155" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/drawable/ic_menu_camera.xml" value="0.3155" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.3155" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.3155" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/drawable/side_nav_bar.xml" value="0.3155" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/activity_courthomepage.xml" value="0.28804347826086957" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/activity_courtregister.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/activity_homepage.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/activity_homepage.xml" value="0.1" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/activity_login.xml" value="0.34782608695652173" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/activity_main.xml" value="0.3484375" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/activity_myaccount.xml" value="0.2563405797101449" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/activity_mybooking.xml" value="0.2563405797101449" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/activity_registration.xml" value="0.34782608695652173" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/app_bar_homepage.xml" value="0.358695652173913" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/content_homepage.xml" value="0.358695652173913" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/fragment_gallery.xml" value="0.358695652173913" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/fragment_home.xml" value="0.358695652173913" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/fragment_slideshow.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/main_nav_drawer.xml" value="0.33" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/main_toolbar.xml" value="0.2563405797101449" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/nav_header_homepage.xml" value="0.358695652173913" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/menu/activity_homepage_drawer.xml" value="0.28020833333333334" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/menu/activity_main_drawer.xml" value="0.3625" />

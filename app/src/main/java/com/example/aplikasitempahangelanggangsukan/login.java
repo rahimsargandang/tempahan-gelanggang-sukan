@@ -108,7 +108,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                                             if(ut.equals("1")){
                                                 startActivity(new Intent(login.this, homepage.class));
                                             }else{
-                                                startActivity(new Intent(login.this, registration.class));
+                                                startActivity(new Intent(login.this, courthomepage.class));
                                             }
                                         }
 
