@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,12 +24,16 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class login extends AppCompatActivity implements View.OnClickListener {
 
     private Button Login;
     private EditText editTextEmail, editTextPassword;
     private FirebaseAuth mAuth;
+    FirebaseFirestore fStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         editTextEmail = (EditText) findViewById(R.id.et_email_login);
         editTextPassword = (EditText)  findViewById(R.id.et_password_login);
         mAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
 
 
     }
@@ -96,30 +102,53 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
                     if (user.isEmailVerified()){
 
-                        FirebaseDatabase.getInstance("https://tempahan-gelanggang-sukan-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                                        .getReference().child("Users").child(userkey).addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        DocumentReference df = fStore.collection("Users").document(userkey);
+                        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                documentSnapshot.getData();
+                                String ut = documentSnapshot.getString("usertype");
+                                Log.d(TAG,ut); 
+                                if (ut.equals("1")){
+                                    startActivity(new Intent(login.this, homepage.class));  
 
-                                        snapshot.getChildren();{
-                                        //String value = (String) snapshot.child("usertype").getValue(String.class);
-                                        String ut = String.valueOf(snapshot.child("usertype").getValue());
-                                            Log.d(TAG,ut);
-                                            if(ut.equals("1")){
-                                                startActivity(new Intent(login.this, homepage.class));
-                                            }else{
-                                                startActivity(new Intent(login.this, courthomepage.class));
-                                            }
-                                        }
+                                }else {
+                                    startActivity(new Intent(login.this, courthomepage.class));
+                                }
+                //            String ut = documentSnapshot.getString("usertype");
+                //            Log.d(TAG,ut);
+                //            if (ut.equals("1")){
+                //                startActivity(new Intent(login.this, homepage.class));
+                //            }else {
+                //                startActivity(new Intent(login.this, courthomepage.class));
+                //            }
+                            }
+                        });
 
-
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
+            //    FirebaseDatabase.getInstance("https://tempahan-gelanggang-sukan-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            //                    .getReference().child("Users").child(userkey).addListenerForSingleValueEvent(new ValueEventListener() {
+            //                @Override
+            //                public void onDataChange(@NonNull DataSnapshot snapshot) {
+            //
+            //                    snapshot.getChildren();{
+            //                    //String value = (String) snapshot.child("usertype").getValue(String.class);
+            //                    String ut = String.valueOf(snapshot.child("usertype").getValue());
+            //                        Log.d(TAG,ut);
+            //                        if(ut.equals("1")){
+            //                            startActivity(new Intent(login.this, homepage.class));
+            //                        }else{
+            //                            startActivity(new Intent(login.this, courthomepage.class));
+            //                        }
+            //                    }
+            //
+            //
+            //                }
+            //
+            //                @Override
+            //                public void onCancelled(@NonNull DatabaseError error) {
+            //
+            //                }
+            //            });
                     }else{
                         user.sendEmailVerification();
                         Toast.makeText(login.this, "Check your email to verify account.", Toast.LENGTH_LONG).show();

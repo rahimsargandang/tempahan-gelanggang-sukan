@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3155" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.1" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/drawable/ic_booking.xml" value="0.1" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3155" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/drawable/ic_menu.xml" value="0.3155" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/drawable/ic_menu_camera.xml" value="0.3155" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.3155" />
@@ -29,6 +31,8 @@
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/menu/activity_homepage_drawer.xml" value="0.28020833333333334" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/menu/activity_main_drawer.xml" value="0.3625" />
         <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/menu/homepage.xml" value="0.3625" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3155" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3155" />
       </map>
     </option>
   </component>

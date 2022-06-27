@@ -21,7 +21,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class registration extends AppCompatActivity implements View.OnClickListener {
 
@@ -30,6 +36,7 @@ public class registration extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth mAuth;
     private Spinner spinneroccupation;
     private String Usertype;
+    FirebaseFirestore fStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +44,7 @@ public class registration extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_registration);
 
         mAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
         cregister = (TextView) findViewById(R.id.tv_registration_registercourt);
 
         registerUser = (Button) findViewById(R.id.btn_registration_register);
@@ -119,25 +127,46 @@ public class registration extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
-                            User user = new User(fullname,email,occupation,usertype);
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            DocumentReference df = fStore.collection("Users").document(user.getUid());
+                            Map<String,Object> userInfo = new HashMap<>();
+                            userInfo.put("fullname", editTextFullName.getText().toString());
+                            userInfo.put("email", editTextEmail.getText().toString());
+                            userInfo.put("occupation", spinneroccupation.getSelectedItem().toString());
+                            userInfo.put("usertype", "1");
 
-                            FirebaseDatabase.getInstance("https://tempahan-gelanggang-sukan-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
+                            df.set(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()){
+                                        Toast.makeText(registration.this, "Registration Successful!", Toast.LENGTH_LONG).show();
+                                        startActivity(new Intent(getApplicationContext(), login.class));
+                                    }else{
+                                        Toast.makeText(registration.this, "Registration Failed! Try Again!", Toast.LENGTH_LONG).show();
+                                    }
 
-                                            if(task.isSuccessful()){
-                                                Toast.makeText(registration.this, "Registration Successful!", Toast.LENGTH_LONG).show();
-                                                Intent intent = new Intent(registration.this, login.class);
-                                                startActivity(intent);
-                                                //redirect Login
-                                            }else{
-                                                Toast.makeText(registration.this, "Registration Failed! Try Again!", Toast.LENGTH_LONG).show();
-                                            }
+                                }
+                            });
 
-                                        }
-                                    });
+                     //       User user = new User(fullname,email,occupation,usertype);
+
+                     //       FirebaseDatabase.getInstance("https://tempahan-gelanggang-sukan-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users")
+                     //               .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                     //               .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                     //                   @Override
+                     //                   public void onComplete(@NonNull Task<Void> task) {
+//
+                     //                       if(task.isSuccessful()){
+                      //                          Toast.makeText(registration.this, "Registration Successful!", Toast.LENGTH_LONG).show();
+                     //                           Intent intent = new Intent(registration.this, login.class);
+                      //                          startActivity(intent);
+                     //                           //redirect Login
+                    //                        }else{
+                   //                             Toast.makeText(registration.this, "Registration Failed! Try Again!", Toast.LENGTH_LONG).show();
+                   //                         }
+//
+                    //                    }
+                      //              });
                         }else{
                             //Log.d("---->",""+task.getException());
                             Toast.makeText(registration.this, "Registration Failed!!!!! Try Again!", Toast.LENGTH_LONG).show();

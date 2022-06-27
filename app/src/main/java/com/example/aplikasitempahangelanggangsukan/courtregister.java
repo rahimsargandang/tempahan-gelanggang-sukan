@@ -18,7 +18,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class courtregister extends AppCompatActivity implements View.OnClickListener{
 
@@ -27,6 +33,7 @@ public class courtregister extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth mAuth;
     private Spinner spinnercourttype;
     private String Usertype;
+    FirebaseFirestore fStore;
 
 
 
@@ -37,6 +44,7 @@ public class courtregister extends AppCompatActivity implements View.OnClickList
 
         Usertype = "2";
         mAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
         registerCourt = (Button) findViewById(R.id.btn_courtregister);
         registerCourt.setOnClickListener(this);
 
@@ -105,28 +113,56 @@ public class courtregister extends AppCompatActivity implements View.OnClickList
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
-                            User user = new User(fullname,email,courttype,usertype);
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            DocumentReference df = fStore.collection("Users").document(user.getUid());
+                            Map<String,Object> userInfo = new HashMap<>();
+                            userInfo.put("fullname", editTextCourtName.getText().toString());
+                            userInfo.put("email", editTextEmail.getText().toString());
+                            //userInfo.put("occupation", spinnercourttype.getSelectedItem().toString());
+                            userInfo.put("usertype", "2");
 
-                            FirebaseDatabase.getInstance("https://tempahan-gelanggang-sukan-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users")
-                                    .child(fullname)
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            df.set(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    DocumentReference df = fStore.collection("Courts").document(editTextCourtName.getText().toString());
+                                    Map<String,Object> courtInfo = new HashMap<>();
+                                    courtInfo.put("courtname", editTextCourtName.getText().toString());
+                                    courtInfo.put("courttype", spinnercourttype.getSelectedItem().toString());
+                                    df.set(courtInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-
-                                            if(task.isSuccessful()){
-                                               courtdetails courtsD = new courtdetails(courtName,courttype);
-                                                FirebaseDatabase.getInstance("https://tempahan-gelanggang-sukan-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Courts")
-                                                               .child(courtName).setValue(courtsD);
-
-                                                Toast.makeText(courtregister.this, "Registration Successful!", Toast.LENGTH_LONG).show();
-                                                Intent intent = new Intent(courtregister.this, login.class);
-                                                startActivity(intent);
-                                            }else{
-                                                Toast.makeText(courtregister.this, "Registration Failed! Try Again!", Toast.LENGTH_LONG).show();
+                                            if (task.isSuccessful()){
+                                                Toast.makeText(courtregister.this, "Court Registration Successful!", Toast.LENGTH_LONG).show();
+                                                startActivity(new Intent(getApplicationContext(), login.class));
+                                            }else {
+                                                Toast.makeText(courtregister.this, "Court Registration Failed! Try Again!", Toast.LENGTH_LONG).show();
                                             }
-
                                         }
                                     });
+                                }
+                            });
+    //                        User user = new User(fullname,email,courttype,usertype);
+//
+  //                          FirebaseDatabase.getInstance("https://tempahan-gelanggang-sukan-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users")
+    //                                .child(fullname)
+      //                              .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+        //                                @Override
+         //                               public void onComplete(@NonNull Task<Void> task) {
+//
+  //                                          if(task.isSuccessful()){
+    //                                           courtdetails courtsD = new courtdetails(courtName,courttype);
+      //                                          FirebaseDatabase.getInstance("https://tempahan-gelanggang-sukan-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Courts")
+        //                                                       .child(courtName).setValue(courtsD);
+//
+  //                                              Toast.makeText(courtregister.this, "Registration Successful!", Toast.LENGTH_LONG).show();
+    //                                            Intent intent = new Intent(courtregister.this, login.class);
+      //                                          startActivity(intent);
+        //                                    }else{
+          //                                      Toast.makeText(courtregister.this, "Registration Failed! Try Again!", Toast.LENGTH_LONG).show();
+            //                                }
+//
+  //                                      }
+    //                                });
                         }else{
                             //Log.d("---->",""+task.getException());
                             Toast.makeText(courtregister.this, "Registration Failed!!!!! Try Again!", Toast.LENGTH_LONG).show();
