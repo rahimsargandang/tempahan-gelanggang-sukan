@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,13 +48,19 @@ public class courtListAdapter extends RecyclerView.Adapter<courtListAdapter.MyVi
         return courtlistArrayList.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView courtName;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             courtName = itemView.findViewById(R.id.tv_rv_courtnameList);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(view.getContext(), "Court Name: " + courtlistArrayList.get(getAdapterPosition()).getCourtname(),Toast.LENGTH_SHORT).show();
         }
     }
 }
