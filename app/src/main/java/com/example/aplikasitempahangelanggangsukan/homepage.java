@@ -5,17 +5,35 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.aplikasitempahangelanggangsukan.Adapter.courtListAdapter;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
 
 public class homepage extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
+
+    RecyclerView recyclerView;
+    courtListAdapter courtListAdapter;
+    ArrayList<courtlist> courtlistArrayList;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +41,48 @@ public class homepage extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
 
         drawerLayout = findViewById(R.id.drawer_layout);
+        recyclerView = findViewById(R.id.recyclerView_homepage);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        db = FirebaseFirestore.getInstance();
+        courtlistArrayList = new ArrayList<courtlist>();
+        courtListAdapter = new courtListAdapter(homepage.this,courtlistArrayList);
+
+        recyclerView.setAdapter(courtListAdapter);
+        EventChangeListener();
+
 
     }
+
+    private void EventChangeListener() {
+
+        db.collection("Courts").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+
+                if(error != null){
+                    Log.e("Firestore error",error.getMessage());
+                    return;
+                }
+
+                for (DocumentChange dc : value.getDocumentChanges()){
+
+                    if (dc.getType() == DocumentChange.Type.ADDED){
+
+                        courtlistArrayList.add(dc.getDocument().toObject(courtlist.class));
+
+                    }
+
+                    courtListAdapter.notifyDataSetChanged();
+
+                }
+
+            }
+        });
+
+    }
+
 
     public void ClickMenu(View view){
         openDrawer(drawerLayout);
@@ -94,4 +152,6 @@ public class homepage extends AppCompatActivity {
         super.onPause();
         closeDrawer(drawerLayout);
     }
+
+
 }

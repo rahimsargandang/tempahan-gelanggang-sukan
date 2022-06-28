@@ -18,13 +18,20 @@
             layout="@layout/main_toolbar"/>
 
         <TextView
+            android:id="@+id/tv_titlehomepage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Home"
-            android:textSize="50sp"
-            android:textStyle="bold"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            ></TextView>
+            android:text="List of Court"
+            android:textColor="@color/font_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_homepage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
 
     </LinearLayout>
 
@@ -34,8 +41,7 @@
         android:layout_gravity="left"
         android:background="@color/white">
 
-        <include
-            layout="@layout/main_nav_drawer"/>
+        <include layout="@layout/main_nav_drawer" />
 
     </RelativeLayout>
 
