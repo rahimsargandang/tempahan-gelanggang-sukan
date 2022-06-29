@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -34,12 +35,14 @@ public class homepage extends AppCompatActivity {
     courtListAdapter courtListAdapter;
     ArrayList<courtlist> courtlistArrayList;
     FirebaseFirestore db;
+    static SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
+        preferences = getSharedPreferences("Aplikasi_Tempahan", MODE_PRIVATE);
         drawerLayout = findViewById(R.id.drawer_layout);
         recyclerView = findViewById(R.id.recyclerView_homepage);
         recyclerView.setHasFixedSize(true);
@@ -47,12 +50,18 @@ public class homepage extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         courtlistArrayList = new ArrayList<courtlist>();
-        courtListAdapter = new courtListAdapter(homepage.this,courtlistArrayList);
+        courtListAdapter = new courtListAdapter(homepage.this,homepage.this,courtlistArrayList);
 
         recyclerView.setAdapter(courtListAdapter);
         EventChangeListener();
 
 
+    }
+
+    public void OnListItemClicked(){
+
+        startActivity(new Intent(homepage.this, BookingActivity.class));
+        closeDrawer(drawerLayout);
     }
 
     private void EventChangeListener() {
@@ -128,6 +137,8 @@ public class homepage extends AppCompatActivity {
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
+                preferences.edit().remove("userEmail").commit();
                 activity.finishAffinity();
                 System.exit(0);
             }

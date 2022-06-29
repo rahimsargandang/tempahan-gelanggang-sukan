@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aplikasitempahangelanggangsukan.R;
 import com.example.aplikasitempahangelanggangsukan.courtlist;
+import com.example.aplikasitempahangelanggangsukan.homepage;
 
 
 import java.util.ArrayList;
@@ -19,10 +20,12 @@ import java.util.ArrayList;
 public class courtListAdapter extends RecyclerView.Adapter<courtListAdapter.MyViewHolder> {
 
     Context context;
+    homepage homepageObj;
     ArrayList<courtlist> courtlistArrayList;
 
-    public courtListAdapter(Context context, ArrayList<courtlist> courtlistArrayList) {
+    public courtListAdapter(Context context, homepage _homepage,ArrayList<courtlist> courtlistArrayList) {
         this.context = context;
+        homepageObj = _homepage;
         this.courtlistArrayList = courtlistArrayList;
     }
 
@@ -60,6 +63,7 @@ public class courtListAdapter extends RecyclerView.Adapter<courtListAdapter.MyVi
 
         @Override
         public void onClick(View view) {
+            homepageObj.OnListItemClicked();
             Toast.makeText(view.getContext(), "Court Name: " + courtlistArrayList.get(getAdapterPosition()).getCourtname(),Toast.LENGTH_SHORT).show();
         }
     }

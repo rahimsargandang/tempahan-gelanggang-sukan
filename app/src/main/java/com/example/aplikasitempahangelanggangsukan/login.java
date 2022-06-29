@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -110,6 +111,11 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                                 String ut = documentSnapshot.getString("usertype");
                                 Log.d(TAG,ut); 
                                 if (ut.equals("1")){
+
+                                    SharedPreferences.Editor editor = getSharedPreferences("Aplikasi_Tempahan", MODE_PRIVATE).edit();
+                                    editor.putString("userEmail", user.getEmail());
+                                    editor.apply();
+
                                     startActivity(new Intent(login.this, homepage.class));  
 
                                 }else {
