@@ -8,10 +8,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aplikasitempahangelanggangsukan.R;
-import com.example.aplikasitempahangelanggangsukan.courtlist;
+import com.example.aplikasitempahangelanggangsukan.Courts;
+import com.example.aplikasitempahangelanggangsukan.homepage;
 
 
 import java.util.ArrayList;
@@ -19,11 +21,13 @@ import java.util.ArrayList;
 public class courtListAdapter extends RecyclerView.Adapter<courtListAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<courtlist> courtlistArrayList;
+    homepage homepageObj;
+    ArrayList<Courts> courtsArrayList;
 
-    public courtListAdapter(Context context, ArrayList<courtlist> courtlistArrayList) {
+    public courtListAdapter(Context context, homepage _homepage,ArrayList<Courts> courtsArrayList) {
         this.context = context;
-        this.courtlistArrayList = courtlistArrayList;
+        homepageObj = _homepage;
+        this.courtsArrayList = courtsArrayList;
     }
 
     @NonNull
@@ -37,30 +41,35 @@ public class courtListAdapter extends RecyclerView.Adapter<courtListAdapter.MyVi
     @Override
     public void onBindViewHolder(@NonNull courtListAdapter.MyViewHolder holder, int position) {
 
-        courtlist cL = courtlistArrayList.get(position);
+        //Courts cL = courtsArrayList.get(position);
 
-        holder.courtName.setText(cL.courtname);
-
+        holder.tv_rv_courtname.setText(courtsArrayList.get(position).getCourtname());
+        holder.tv_rv_court_add.setText(courtsArrayList.get(position).getCoutaddress());
+        holder.container_court.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                homepageObj.OnListItemClicked(courtsArrayList.get(position));
+                Toast.makeText(view.getContext(), "Court Name: " + courtsArrayList.get(position).getCourtname(),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return courtlistArrayList.size();
+        return courtsArrayList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView courtName;
+        TextView tv_rv_courtname,tv_rv_court_add;
+        CardView container_court;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            courtName = itemView.findViewById(R.id.tv_rv_courtnameList);
-            itemView.setOnClickListener(this);
-        }
+            tv_rv_courtname = itemView.findViewById(R.id.tv_rv_courtname);
+            tv_rv_court_add = itemView.findViewById(R.id.tv_rv_court_add);
+            container_court = itemView.findViewById(R.id.container_court);
 
-        @Override
-        public void onClick(View view) {
-            Toast.makeText(view.getContext(), "Court Name: " + courtlistArrayList.get(getAdapterPosition()).getCourtname(),Toast.LENGTH_SHORT).show();
         }
     }
 }

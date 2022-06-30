@@ -8,12 +8,9 @@ public class TimeSlots {
     private String timeSpan;
     private String available;
     private String userEmail;
-<<<<<<< HEAD
     private String courtname;
     private String coutaddress;
 
-=======
->>>>>>> origin/main
     public Date getSportDate() {
         return sportDate;
     }
@@ -45,7 +42,6 @@ public class TimeSlots {
     public void setAvailable(String available) {
         this.available = available;
     }
-<<<<<<< HEAD
 
 
     public String getCourtname() {
@@ -63,6 +59,4 @@ public class TimeSlots {
     public void setCoutaddress(String coutaddress) {
         this.coutaddress = coutaddress;
     }
-=======
->>>>>>> origin/main
 }

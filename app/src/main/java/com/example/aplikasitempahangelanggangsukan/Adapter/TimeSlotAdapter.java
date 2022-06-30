@@ -8,10 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-<<<<<<< HEAD
-=======
-import android.widget.Toast;
->>>>>>> origin/main
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -20,11 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.aplikasitempahangelanggangsukan.BookingActivity;
 import com.example.aplikasitempahangelanggangsukan.R;
 import com.example.aplikasitempahangelanggangsukan.TimeSlots;
-<<<<<<< HEAD
-=======
-import com.example.aplikasitempahangelanggangsukan.courtlist;
-import com.example.aplikasitempahangelanggangsukan.homepage;
->>>>>>> origin/main
 
 import java.util.ArrayList;
 
@@ -59,11 +50,7 @@ public class TimeSlotAdapter extends RecyclerView.Adapter<TimeSlotAdapter.MyView
         });
 
         if(row_index==position){
-<<<<<<< HEAD
             holder.card_time_slot.setBackgroundColor(context.getResources().getColor(R.color.purple_500));
-=======
-            holder.card_time_slot.setBackgroundColor(context.getResources().getColor(R.color.orange));
->>>>>>> origin/main
             holder.txt_time_slot.setTextColor(Color.parseColor("#FFFFFF"));
             holder.txt_time_slot_desc.setTextColor(Color.parseColor("#FFFFFF"));
 
@@ -74,11 +61,7 @@ public class TimeSlotAdapter extends RecyclerView.Adapter<TimeSlotAdapter.MyView
                 BookingActivity.dataModel.setAvailable("false");
                 BookingActivity.dataModel.setTimeSpan(timeSlotsArrayList.get(position).getTimeSpan());
             }else {
-<<<<<<< HEAD
                 holder.txt_time_slot_desc.setText("UnAvailable");
-=======
-                holder.txt_time_slot_desc.setText("Unavailable");
->>>>>>> origin/main
                 BookingActivity.dataModel.setAvailable("true");
                 BookingActivity.dataModel.setTimeSpan(timeSlotsArrayList.get(position).getTimeSpan());
             }
@@ -100,11 +83,7 @@ public class TimeSlotAdapter extends RecyclerView.Adapter<TimeSlotAdapter.MyView
                 holder.txt_time_slot_desc.setText("UnAvailable");
 
                 holder.card_time_slot.setEnabled(false);
-<<<<<<< HEAD
                 holder.card_time_slot.setBackgroundColor(context.getResources().getColor(R.color.purple_100));
-=======
-                holder.card_time_slot.setBackgroundColor(context.getResources().getColor(R.color.gray));
->>>>>>> origin/main
                 holder.txt_time_slot.setTextColor(Color.parseColor("#000000"));
                 holder.txt_time_slot_desc.setTextColor(Color.parseColor("#000000"));
             }
