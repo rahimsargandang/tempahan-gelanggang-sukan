@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="8dp"
-    android:id="@+id/container_courtlist"
+    android:id="@+id/container_court"
     app:cardCornerRadius="8dp"
     android:layout_margin="5dp">
 
@@ -23,12 +23,21 @@
 
 
             <TextView
-                android:id="@+id/tv_rv_courtnameList"
+                android:id="@+id/tv_rv_courtname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="courtname"
-                android:textColor="#000000"
-                android:textSize="30sp"
+                android:textColor="@color/purple_500"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_rv_court_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="courtaddress"
+                android:textColor="@color/purple_200"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
 

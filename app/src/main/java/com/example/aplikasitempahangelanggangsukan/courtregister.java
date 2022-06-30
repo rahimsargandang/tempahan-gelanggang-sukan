@@ -29,7 +29,7 @@ import java.util.Map;
 public class courtregister extends AppCompatActivity implements View.OnClickListener{
 
     private TextView registerCourt;
-    private EditText editTextCourtName, editTextEmail, editTextPassword;
+    private EditText editTextCourtName, editTextEmail, editTextPassword,et_register_court_address;
     private FirebaseAuth mAuth;
     private Spinner spinnercourttype;
     private String Usertype;
@@ -52,6 +52,7 @@ public class courtregister extends AppCompatActivity implements View.OnClickList
         editTextCourtName = (EditText) findViewById(R.id.et_registercourt_courtname);
         editTextEmail = (EditText) findViewById(R.id.et_registercourt_email);
         editTextPassword = (EditText) findViewById(R.id.et_registercourt_password);
+        et_register_court_address = (EditText) findViewById(R.id.et_register_court_address);
 
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(courtregister.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.courttype));
@@ -75,6 +76,7 @@ public class courtregister extends AppCompatActivity implements View.OnClickList
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         String courttype = spinnercourttype.getSelectedItem().toString().trim();
+        String courtaddress = et_register_court_address.getText().toString().trim();
         String usertype = Usertype.toString().trim();
 
         if(fullname.isEmpty()){
@@ -95,7 +97,12 @@ public class courtregister extends AppCompatActivity implements View.OnClickList
             return;
         }
 
-        if(password.isEmpty()){
+        if(courtaddress.isEmpty()){
+            et_register_court_address.setError("Address is required!");
+            et_register_court_address.requestFocus();
+            return;
+
+        } if(password.isEmpty()){
             editTextPassword.setError("Password is required!");
             editTextPassword.requestFocus();
             return;
@@ -128,6 +135,9 @@ public class courtregister extends AppCompatActivity implements View.OnClickList
                                     Map<String,Object> courtInfo = new HashMap<>();
                                     courtInfo.put("courtname", editTextCourtName.getText().toString());
                                     courtInfo.put("courttype", spinnercourttype.getSelectedItem().toString());
+                                    courtInfo.put("fullname", editTextCourtName.getText().toString());
+                                    courtInfo.put("email", editTextEmail.getText().toString());
+                                    courtInfo.put("coutaddress", et_register_court_address.getText().toString());
                                     df.set(courtInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {

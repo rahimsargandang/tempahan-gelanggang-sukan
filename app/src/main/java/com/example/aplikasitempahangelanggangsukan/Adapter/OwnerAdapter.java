@@ -11,52 +11,40 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.aplikasitempahangelanggangsukan.R;
 import com.example.aplikasitempahangelanggangsukan.Courts;
+import com.example.aplikasitempahangelanggangsukan.R;
+import com.example.aplikasitempahangelanggangsukan.TimeSlots;
 import com.example.aplikasitempahangelanggangsukan.homepage;
-
 
 import java.util.ArrayList;
 
-public class courtListAdapter extends RecyclerView.Adapter<courtListAdapter.MyViewHolder> {
+public class OwnerAdapter extends RecyclerView.Adapter<OwnerAdapter.MyViewHolder> {
 
     Context context;
-    homepage homepageObj;
-    ArrayList<Courts> courtsArrayList;
+    ArrayList<TimeSlots> timeSlotsArrayList;
 
-    public courtListAdapter(Context context, homepage _homepage,ArrayList<Courts> courtsArrayList) {
+    public OwnerAdapter(Context context, ArrayList<TimeSlots> _timeSlotsArrayList) {
         this.context = context;
-        homepageObj = _homepage;
-        this.courtsArrayList = courtsArrayList;
+        this.timeSlotsArrayList = _timeSlotsArrayList;
     }
 
     @NonNull
     @Override
-    public courtListAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+    public OwnerAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.itemrv,parent,false);
         return new MyViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull courtListAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull OwnerAdapter.MyViewHolder holder, int position) {
+        holder.tv_rv_court_add.setText(timeSlotsArrayList.get(position).getSportDate()+"");
+        holder.tv_rv_courtname.setText(timeSlotsArrayList.get(position).getTimeSpan());
 
-        //Courts cL = courtsArrayList.get(position);
-
-        holder.tv_rv_courtname.setText(courtsArrayList.get(position).getCourtname());
-        holder.tv_rv_court_add.setText(courtsArrayList.get(position).getCoutaddress());
-        holder.container_court.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                homepageObj.OnListItemClicked(courtsArrayList.get(position));
-                Toast.makeText(view.getContext(), "Court Name: " + courtsArrayList.get(position).getCourtname(),Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
     public int getItemCount() {
-        return courtsArrayList.size();
+        return timeSlotsArrayList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
