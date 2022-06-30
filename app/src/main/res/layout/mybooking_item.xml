@@ -5,6 +5,7 @@
     android:padding="15dp"
     android:layout_height="wrap_content">
 
+<<<<<<< HEAD
 
     <TextView
         android:id="@+id/tv_rv_courtname"
@@ -29,14 +30,19 @@
         android:textSize="14sp"
         android:textStyle="bold" />
 
+=======
+>>>>>>> origin/main
     <TextView
         android:id="@+id/txt_time_slot"
         android:text="10:00 - 12:00"
         android:textSize="12sp"
         android:textStyle="bold"
         android:layout_alignParentStart="true"
+<<<<<<< HEAD
         android:layout_below="@+id/tv_rv_court_add"
         android:textColor="@color/purple_200"
+=======
+>>>>>>> origin/main
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -47,8 +53,11 @@
         android:textStyle="italic"
         android:layout_alignParentEnd="true"
         android:layout_width="wrap_content"
+<<<<<<< HEAD
         android:textColor="@color/purple_200"
         android:layout_below="@+id/tv_rv_court_add"
+=======
+>>>>>>> origin/main
         android:layout_height="wrap_content"/>
 
 

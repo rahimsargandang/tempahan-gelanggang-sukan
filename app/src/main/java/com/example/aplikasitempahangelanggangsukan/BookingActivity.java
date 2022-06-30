@@ -9,7 +9,10 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Space;
+<<<<<<< HEAD
 import android.widget.TextView;
+=======
+>>>>>>> origin/main
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -45,8 +48,11 @@ public class BookingActivity extends AppCompatActivity {
     ArrayList<TimeSlots> parsedSlotsArrayList = new ArrayList<>();
     Button save_btn;
     public static TimeSlots dataModel;
+<<<<<<< HEAD
     private Courts court;
     private TextView tv_rv_courtname,tv_rv_court_add;
+=======
+>>>>>>> origin/main
 
     private void addTimeSlots(){
 
@@ -93,6 +99,7 @@ public class BookingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_booking);
         dataModel = new TimeSlots();
 
+<<<<<<< HEAD
         tv_rv_courtname = findViewById(R.id.tv_rv_courtname);
         tv_rv_court_add = findViewById(R.id.tv_rv_court_add);
 
@@ -102,6 +109,8 @@ public class BookingActivity extends AppCompatActivity {
             tv_rv_courtname.setText(court.getCourtname());
             tv_rv_court_add.setText(court.getCoutaddress());
         }
+=======
+>>>>>>> origin/main
 
         drawerLayout = findViewById(R.id.drawer_layout);
         save_btn = findViewById(R.id.save_btn);
@@ -119,8 +128,11 @@ public class BookingActivity extends AppCompatActivity {
                     Map<String, Object> bookingDetails = new HashMap<>();
                     bookingDetails.put("sportDate", dataModel.getSportDate());
                     bookingDetails.put("timeSpan", dataModel.getTimeSpan());
+<<<<<<< HEAD
                     bookingDetails.put("coutaddress", court.getCoutaddress());
                     bookingDetails.put("courtname", court.getCourtname());
+=======
+>>>>>>> origin/main
                     bookingDetails.put("available", dataModel.getAvailable());
                     bookingDetails.put("userEmail", dataModel.getUserEmail());
 
@@ -206,6 +218,7 @@ public class BookingActivity extends AppCompatActivity {
                                     for(int i = 0;i<types.size();i++){
                                         if(types.get(i).getSportDate().getDate() == myCalendar.getTime().getDate() &&
                                                 types.get(i).getSportDate().getMonth() == myCalendar.getTime().getMonth()){
+<<<<<<< HEAD
                                             if(types.get(i).getCoutaddress()!=null && types.get(i).getCourtname()!=null) {
                                                 if (types.get(i).getCourtname().equals(court.getCourtname()) &&
                                                         types.get(i).getCoutaddress().equals(court.getCoutaddress())) {
@@ -219,6 +232,16 @@ public class BookingActivity extends AppCompatActivity {
                                                     parsedSlotsArrayList.add(timeSlots);
                                                 }
                                             }
+=======
+                                            Log.d(TAG, "Date Matached");
+
+                                            TimeSlots timeSlots = new TimeSlots();
+                                            timeSlots.setTimeSpan(types.get(i).getTimeSpan());
+                                            timeSlots.setAvailable(types.get(i).getAvailable());
+                                            timeSlots.setSportDate(types.get(i).getSportDate());
+
+                                            parsedSlotsArrayList.add(timeSlots);
+>>>>>>> origin/main
 
 
                                         }
