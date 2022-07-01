@@ -137,7 +137,7 @@ public class courtregister extends AppCompatActivity implements View.OnClickList
                                     courtInfo.put("courttype", spinnercourttype.getSelectedItem().toString());
                                     courtInfo.put("fullname", editTextCourtName.getText().toString());
                                     courtInfo.put("email", editTextEmail.getText().toString());
-                                    courtInfo.put("coutaddress", et_register_court_address.getText().toString());
+                                    courtInfo.put("courtaddress", et_register_court_address.getText().toString());
                                     df.set(courtInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {

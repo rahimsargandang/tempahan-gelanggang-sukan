@@ -44,7 +44,7 @@ public class courtListAdapter extends RecyclerView.Adapter<courtListAdapter.MyVi
         //Courts cL = courtsArrayList.get(position);
 
         holder.tv_rv_courtname.setText(courtsArrayList.get(position).getCourtname());
-        holder.tv_rv_court_add.setText(courtsArrayList.get(position).getCoutaddress());
+        holder.tv_rv_court_add.setText(courtsArrayList.get(position).getCourtaddress());
         holder.container_court.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

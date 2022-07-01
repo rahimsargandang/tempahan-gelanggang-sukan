@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 public class Courts implements Serializable {
     private String courtname;
-    private String coutaddress;
+    private String courtaddress;
 
     public Courts(){}
 
-    public String getCoutaddress() {
-        return coutaddress;
+    public String getCourtaddress() {
+        return courtaddress;
     }
 
-    public void setCoutaddress(String coutaddress) {
-        this.coutaddress = coutaddress;
+    public void setCourtaddress(String courtaddress) {
+        this.courtaddress = courtaddress;
     }
 
     public String getCourtname() {

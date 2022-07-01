@@ -37,8 +37,8 @@ public class OwnerAdapter extends RecyclerView.Adapter<OwnerAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull OwnerAdapter.MyViewHolder holder, int position) {
-        holder.tv_rv_court_add.setText(timeSlotsArrayList.get(position).getSportDate()+"");
-        holder.tv_rv_courtname.setText(timeSlotsArrayList.get(position).getTimeSpan());
+        holder.tv_rv_court_add.setText(timeSlotsArrayList.get(position).getBookingDate()+"");
+        holder.tv_rv_courtname.setText(timeSlotsArrayList.get(position).getTimeSlot());
 
     }
 

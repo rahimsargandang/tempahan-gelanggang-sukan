@@ -4,15 +4,20 @@ import java.util.Date;
 
 public class TimeSlots {
 
-    private Date sportDate;
-    private String timeSpan;
+    private Date bookingDate;
+    private String timeSlot;
     private String available;
     private String userEmail;
     private String courtname;
-    private String coutaddress;
+    private String courtaddress;
 
-    public Date getSportDate() {
-        return sportDate;
+
+    public Date getBookingDate() {
+        return bookingDate;
+    }
+
+    public void setBookingDate(Date bookingDate) {
+        this.bookingDate = bookingDate;
     }
 
     public String getUserEmail() {
@@ -23,16 +28,13 @@ public class TimeSlots {
         this.userEmail = userEmail;
     }
 
-    public void setSportDate(Date sportDate) {
-        this.sportDate = sportDate;
+
+    public String getTimeSlot() {
+        return timeSlot;
     }
 
-    public String getTimeSpan() {
-        return timeSpan;
-    }
-
-    public void setTimeSpan(String timeSpan) {
-        this.timeSpan = timeSpan;
+    public void setTimeSlot(String timeSlot) {
+        this.timeSlot = timeSlot;
     }
 
     public String getAvailable() {
@@ -52,11 +54,11 @@ public class TimeSlots {
         this.courtname = courtname;
     }
 
-    public String getCoutaddress() {
-        return coutaddress;
+    public String getCourtaddress() {
+        return courtaddress;
     }
 
-    public void setCoutaddress(String coutaddress) {
-        this.coutaddress = coutaddress;
+    public void setCourtaddress(String courtaddress) {
+        this.courtaddress = courtaddress;
     }
 }

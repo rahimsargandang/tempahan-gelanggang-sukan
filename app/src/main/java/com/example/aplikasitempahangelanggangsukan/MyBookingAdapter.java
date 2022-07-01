@@ -36,8 +36,8 @@ public class MyBookingAdapter extends RecyclerView.Adapter<MyBookingAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyBookingAdapter.MyViewHolder holder, int position) {
-        holder.txt_time_slot.setText(timeSlotsArrayList.get(position).getTimeSpan());
-        holder.txt_date_slot.setText(timeSlotsArrayList.get(position).getSportDate()+"");
+        holder.txt_time_slot.setText(timeSlotsArrayList.get(position).getTimeSlot());
+        holder.txt_date_slot.setText(timeSlotsArrayList.get(position).getBookingDate()+"");
     }
 
     @Override

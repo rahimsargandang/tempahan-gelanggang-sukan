@@ -54,23 +54,23 @@ public class TimeSlotAdapter extends RecyclerView.Adapter<TimeSlotAdapter.MyView
             holder.txt_time_slot.setTextColor(Color.parseColor("#FFFFFF"));
             holder.txt_time_slot_desc.setTextColor(Color.parseColor("#FFFFFF"));
 
-            holder.txt_time_slot.setText(timeSlotsArrayList.get(position).getTimeSpan());
+            holder.txt_time_slot.setText(timeSlotsArrayList.get(position).getTimeSlot());
 
             if(timeSlotsArrayList.get(position).getAvailable().equals("true")) {
                 holder.txt_time_slot_desc.setText("Available");
                 BookingActivity.dataModel.setAvailable("false");
-                BookingActivity.dataModel.setTimeSpan(timeSlotsArrayList.get(position).getTimeSpan());
+                BookingActivity.dataModel.setTimeSlot(timeSlotsArrayList.get(position).getTimeSlot());
             }else {
                 holder.txt_time_slot_desc.setText("UnAvailable");
                 BookingActivity.dataModel.setAvailable("true");
-                BookingActivity.dataModel.setTimeSpan(timeSlotsArrayList.get(position).getTimeSpan());
+                BookingActivity.dataModel.setTimeSlot(timeSlotsArrayList.get(position).getTimeSlot());
             }
 
 
         }
         else {
 
-            holder.txt_time_slot.setText(timeSlotsArrayList.get(position).getTimeSpan());
+            holder.txt_time_slot.setText(timeSlotsArrayList.get(position).getTimeSlot());
 
             if(timeSlotsArrayList.get(position).getAvailable().equals("true")) {
                 holder.txt_time_slot_desc.setText("Available");

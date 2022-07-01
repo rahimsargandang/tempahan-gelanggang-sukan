@@ -1,6 +1,8 @@
 package com.example.aplikasitempahangelanggangsukan;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -51,33 +53,33 @@ public class BookingActivity extends AppCompatActivity {
     private void addTimeSlots(){
 
         TimeSlots timeSlots1 = new TimeSlots();
-        timeSlots1.setTimeSpan("10:00 - 12:00");
+        timeSlots1.setTimeSlot("10:00 - 12:00");
         timeSlots1.setAvailable("true");
         timeSlotsArrayList.add(timeSlots1);
 
 
         TimeSlots timeSlots2 = new TimeSlots();
-        timeSlots2.setTimeSpan("12:00 - 02:00");
+        timeSlots2.setTimeSlot("12:00 - 02:00");
         timeSlots2.setAvailable("true");
         timeSlotsArrayList.add(timeSlots2);
 
         TimeSlots timeSlots3 = new TimeSlots();
-        timeSlots3.setTimeSpan("02:00 - 04:00");
+        timeSlots3.setTimeSlot("02:00 - 04:00");
         timeSlots3.setAvailable("true");
         timeSlotsArrayList.add(timeSlots3);
 
         TimeSlots timeSlots4 = new TimeSlots();
-        timeSlots4.setTimeSpan("04:00 - 06:00");
+        timeSlots4.setTimeSlot("04:00 - 06:00");
         timeSlots4.setAvailable("true");
         timeSlotsArrayList.add(timeSlots4);
 
         TimeSlots timeSlots5 = new TimeSlots();
-        timeSlots5.setTimeSpan("06:00 - 08:00");
+        timeSlots5.setTimeSlot("06:00 - 08:00");
         timeSlots5.setAvailable("true");
         timeSlotsArrayList.add(timeSlots5);
 
         TimeSlots timeSlots6 = new TimeSlots();
-        timeSlots6.setTimeSpan("08:00 - 10:00");
+        timeSlots6.setTimeSlot("08:00 - 10:00");
         timeSlots6.setAvailable("true");
         timeSlotsArrayList.add(timeSlots6);
 
@@ -100,7 +102,7 @@ public class BookingActivity extends AppCompatActivity {
         if(court!=null) {
 
             tv_rv_courtname.setText(court.getCourtname());
-            tv_rv_court_add.setText(court.getCoutaddress());
+            tv_rv_court_add.setText(court.getCourtaddress());
         }
 
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -108,43 +110,62 @@ public class BookingActivity extends AppCompatActivity {
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(sport_date_edt.getText().toString().isEmpty()){
-                    Toast.makeText(BookingActivity.this,"Please select Date and Time to Procced",Toast.LENGTH_LONG).show();
-                }else{
-                    SharedPreferences prefs = getSharedPreferences("Aplikasi_Tempahan", MODE_PRIVATE);
-                    String userEmail = prefs.getString("userEmail", "");
-                    Log.d("User Email", userEmail);
 
-                    dataModel.setUserEmail(userEmail);
-                    Map<String, Object> bookingDetails = new HashMap<>();
-                    bookingDetails.put("sportDate", dataModel.getSportDate());
-                    bookingDetails.put("timeSpan", dataModel.getTimeSpan());
-                    bookingDetails.put("coutaddress", court.getCoutaddress());
-                    bookingDetails.put("courtname", court.getCourtname());
-                    bookingDetails.put("available", dataModel.getAvailable());
-                    bookingDetails.put("userEmail", dataModel.getUserEmail());
+                AlertDialog.Builder builder = new AlertDialog.Builder(BookingActivity.this);
+                builder.setTitle("Booking Confirmation");
+                builder.setMessage("Are you sure you want to book this date?");
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
-                    dbFireStoreInstance = FirebaseFirestore.getInstance();
-                    dbFireStoreInstance.collection("bookings")
-                            .document()
-                            .set(bookingDetails)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        if(sport_date_edt.getText().toString().isEmpty()){
+                            Toast.makeText(BookingActivity.this,"Please select Date and Time to Procced",Toast.LENGTH_LONG).show();
+                        }else{
+                            SharedPreferences prefs = getSharedPreferences("Aplikasi_Tempahan", MODE_PRIVATE);
+                            String userEmail = prefs.getString("userEmail", "");
+                            Log.d("User Email", userEmail);
+
+                            dataModel.setUserEmail(userEmail);
+                            Map<String, Object> bookingDetails = new HashMap<>();
+                            bookingDetails.put("bookingDate", dataModel.getBookingDate());
+                            bookingDetails.put("timeSlot", dataModel.getTimeSlot());
+                            bookingDetails.put("courtaddress", court.getCourtaddress());
+                            bookingDetails.put("courtname", court.getCourtname());
+                            bookingDetails.put("available", dataModel.getAvailable());
+                            bookingDetails.put("userEmail", dataModel.getUserEmail());
+
+                            dbFireStoreInstance = FirebaseFirestore.getInstance();
+                            dbFireStoreInstance.collection("bookings")
+                                    .document()
+                                    .set(bookingDetails)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "DocumentSnapshot added with ID: ");
+                                            Toast.makeText(BookingActivity.this, "Data saved successfully", Toast.LENGTH_LONG).show();
+                                            dataModel = null;
+                                            onBackPressed();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
                                 @Override
-                                public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "DocumentSnapshot added with ID: ");
-                                    Toast.makeText(BookingActivity.this, "Data saved successfully", Toast.LENGTH_LONG).show();
-                                    dataModel = null;
-                                    onBackPressed();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Error adding document", e);
-                            Toast.makeText(BookingActivity.this, "" + e, Toast.LENGTH_LONG).show();
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Error adding document", e);
+                                    Toast.makeText(BookingActivity.this, "" + e, Toast.LENGTH_LONG).show();
 
+                                }
+                            });
                         }
-                    });
-                }
+
+                    }
+                });
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+
 
 
 
@@ -173,7 +194,7 @@ public class BookingActivity extends AppCompatActivity {
                 String myFormat="MM/dd/yy";
                 SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.US);
                 sport_date_edt.setText(dateFormat.format(myCalendar.getTime()));
-                BookingActivity.dataModel.setSportDate(myCalendar.getTime());
+                BookingActivity.dataModel.setBookingDate(myCalendar.getTime());
 
                 parsedSlotsArrayList.clear();
                 timeSlotsArrayList.clear();
@@ -204,17 +225,17 @@ public class BookingActivity extends AppCompatActivity {
                                     List<TimeSlots> types = documentSnapshots.toObjects(TimeSlots.class);
 
                                     for(int i = 0;i<types.size();i++){
-                                        if(types.get(i).getSportDate().getDate() == myCalendar.getTime().getDate() &&
-                                                types.get(i).getSportDate().getMonth() == myCalendar.getTime().getMonth()){
-                                            if(types.get(i).getCoutaddress()!=null && types.get(i).getCourtname()!=null) {
+                                        if(types.get(i).getBookingDate().getDate() == myCalendar.getTime().getDate() &&
+                                                types.get(i).getBookingDate().getMonth() == myCalendar.getTime().getMonth()){
+                                            if(types.get(i).getCourtaddress()!=null && types.get(i).getCourtname()!=null) {
                                                 if (types.get(i).getCourtname().equals(court.getCourtname()) &&
-                                                        types.get(i).getCoutaddress().equals(court.getCoutaddress())) {
+                                                        types.get(i).getCourtaddress().equals(court.getCourtaddress())) {
                                                     Log.d(TAG, "Date Matached");
 
                                                     TimeSlots timeSlots = new TimeSlots();
-                                                    timeSlots.setTimeSpan(types.get(i).getTimeSpan());
+                                                    timeSlots.setTimeSlot(types.get(i).getTimeSlot());
                                                     timeSlots.setAvailable(types.get(i).getAvailable());
-                                                    timeSlots.setSportDate(types.get(i).getSportDate());
+                                                    timeSlots.setBookingDate(types.get(i).getBookingDate());
 
                                                     parsedSlotsArrayList.add(timeSlots);
                                                 }
@@ -227,7 +248,7 @@ public class BookingActivity extends AppCompatActivity {
 
                                     for(int j = 0;j<timeSlotsArrayList.size();j++){//10-12
                                         for(int k =0;k<parsedSlotsArrayList.size();k++)//4-6,8-10
-                                            if(timeSlotsArrayList.get(j).getTimeSpan().equals(parsedSlotsArrayList.get(k).getTimeSpan())){
+                                            if(timeSlotsArrayList.get(j).getTimeSlot().equals(parsedSlotsArrayList.get(k).getTimeSlot())){
                                                 timeSlotsArrayList.get(j).setAvailable(parsedSlotsArrayList.get(k).getAvailable());
                                             }
                                     }

@@ -36,9 +36,9 @@ public class MyBookingAdapter extends RecyclerView.Adapter<MyBookingAdapter.MyVi
     @Override
     public void onBindViewHolder(@NonNull MyBookingAdapter.MyViewHolder holder, int position) {
         holder.tv_rv_courtname.setText(timeSlotsArrayList.get(position).getCourtname());
-        holder.tv_rv_court_add.setText(timeSlotsArrayList.get(position).getCoutaddress());
-        holder.txt_time_slot.setText(timeSlotsArrayList.get(position).getTimeSpan());
-        holder.txt_date_slot.setText(timeSlotsArrayList.get(position).getSportDate()+"");
+        holder.tv_rv_court_add.setText(timeSlotsArrayList.get(position).getCourtaddress());
+        holder.txt_time_slot.setText(timeSlotsArrayList.get(position).getTimeSlot());
+        holder.txt_date_slot.setText(timeSlotsArrayList.get(position).getBookingDate()+"");
     }
 
     @Override
