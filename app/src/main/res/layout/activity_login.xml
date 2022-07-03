@@ -57,7 +57,7 @@
         android:background="@drawable/rounded_edt"
         android:ems="10"
         android:hint="Email"
-        android:text="amirhafizkhan19@gmail.com"
+        android:text="rahimsargandang@gmail.com"
         android:inputType="textPersonName"
 
         />
@@ -72,7 +72,7 @@
         android:background="@drawable/rounded_edt"
         android:ems="10"
         android:layout_below="@+id/et_email_login"
-        android:text="pass12345"
+        android:text="12345678"
         android:hint="Password"
         android:inputType="textPassword"
         />
