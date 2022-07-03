@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_background"
@@ -13,7 +14,7 @@
         android:layout_height="120dp"
         android:layout_margin="16dp"
         android:onClick="ClickLogo"
-        android:src="@drawable/ic_logo"/>
+        android:src="@drawable/logo"/>
 
 
     <TextView
@@ -23,7 +24,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:textAlignment="center"
-        android:textColor="#636363"/>
+        android:textColor="#FF3700B3"/>
 
     <View
         android:layout_width="match_parent"
@@ -45,13 +46,15 @@
         android:layout_weight="1"
         android:text="Home"
         android:padding="12dp"
+        android:textColor="#FF3700B3"
         android:layout_marginStart="16dp"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
-            android:src="@drawable/ic_home"/>
+            android:src="@drawable/ic_home"
+            app:tint="#FF3700B3" />
 
     </LinearLayout>
 
@@ -68,38 +71,19 @@
             android:layout_weight="1"
             android:text="My Booking"
             android:padding="12dp"
+            android:textColor="#FF3700B3"
             android:layout_marginStart="16dp"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
-            android:src="@drawable/ic_booking"/>
+            android:src="@drawable/ic_booking"
+            app:tint="#FF3700B3" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:onClick="ClickAboutUs">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="My Profile"
-            android:padding="12dp"
-            android:layout_marginStart="16dp"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="48dp"
-            android:src="@drawable/ic_info"/>
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -113,6 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Logout"
+            android:textColor="#FF3700B3"
             android:padding="12dp"
             android:layout_marginStart="16dp"/>
 
@@ -120,7 +105,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
-            android:src="@drawable/ic_baseline_logout_24"/>
+            android:src="@drawable/ic_baseline_logout_24"
+            app:tint="#FF3700B3" />
 
     </LinearLayout>
 

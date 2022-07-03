@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/activity_main.xml" value="0.34782608695652173" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/main_nav_drawer.xml" value="0.34782608695652173" />
+        <entry key="..\:/Users/User/Documents/AndroidStudioProjects/AplikasiTempahanGelanggangSukan/app/src/main/res/layout/main_toolbar.xml" value="0.34782608695652173" />
         <entry key="app/src/main/res/layout/activity_booking.xml" value="0.2462962962962963" />
         <entry key="app/src/main/res/layout/activity_courthomepage.xml" value="0.2578125" />
         <entry key="app/src/main/res/layout/activity_courtregister.xml" value="0.2578125" />
